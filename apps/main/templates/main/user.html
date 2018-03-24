@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Posts by {{ user.name }}</title>
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
+</head>
+
+<body>
+
+	<div class="navbar">
+		<div class="left">
+		</div>
+		<div class="right">
+			<p><a href="/quotes">Dashboard</a> | <a href="/logout">Logout</a></p> <!-- users/templates/users.html -->
+		</div>
+	</div>
+	<div class="profile"> <!-- users/templates/users.html -->
+		<p>Posts by {{ user.name }}</p>
+		<p>Count: {{ count }}</p>
+		{% for quote in quotes %}
+		<p><span>{{ quote.author }}:</span> {{ quote.quote }}</p>
+		{% endfor %}
+	</div>
+
+</body>
+</html>

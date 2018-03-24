@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Login/Registration</title>
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
+</head>
+
+<body>
+
+	<div class="navbar">
+		<div class="left">
+			<p>Welcome!</p> <!-- main/templates/index.html -->
+		</div>
+		<div class="right">
+			{% if request.session.id > 0 %}
+			<p><a href="/logout">Logout</a></p> <!-- quotes/templates/index.html -->
+			{% endif %}
+		</div>
+	</div>
+	<div class="container"> <!-- main/templates/index.html --> <!-- quotes/templates/index.html -->
+		{% if messages %}
+		<ul class="messages">
+			{% for message in messages %}
+			<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+		<div class="left"> <!-- main/templates/index.html -->
+			<h2>Register</h2>
+			<form action="register" method="post">
+				{% csrf_token %}
+				<label for="name">Name:</label>
+				<input type="text" id="name" name="name" value="{{ request.session.name }}"><br>
+				<label for="alias">Alias:</label>
+				<input type="text" id="alias" name="alias" value="{{ request.session.alias }}"><br>
+				<label for="reg_email">Email:</label>
+				<input type="email" id="reg_email" name="email" value="{{ request.session.email }}"><br>
+				<label for="reg_password">Password:</label>
+				<input type="password" id="reg_password" name="password"><br>
+				<label for="cpassword">Confirm PW:</label>
+				<input type="password" id="cpassword" name="cpassword"><br>
+				<label for="dob">Date of Birth:</label>
+				<input type="date" id="dob" name="dob" value="{{ request.session.dob }}"><br>
+				<div class="container">
+					<div class="right smallpadding">
+						<input class="blue" type="submit" value="Register">
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="right"> <!-- main/templates/index.html -->
+			<h2>Login</h2>
+			<form action="login" method="post">
+				{% csrf_token %}
+				<label for="log_email">Email:</label>
+				<input type="email" id="log_email" name="email" value="{{ request.session.email }}"><br>
+				<label for="log_password">Password:</label>
+				<input type="password" id="log_password" name="password"><br>
+				<div class="container">
+					<div class="right smallpadding">
+						<input class="blue" type="submit" value="Login">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+</body>
+</html>
