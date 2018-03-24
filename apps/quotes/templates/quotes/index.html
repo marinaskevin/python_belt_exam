@@ -54,7 +54,7 @@
 					<p>{{ fav.author }}: {{ fav.quote }}</p>
 					<div class="container">
 						<div class="left">
-							<p>Powered by <a href="/users/{{ fav.id }}">{{ fav.author }}</a></p>
+							<p>Powered by <a href="/users/{{ fav.user.id }}">{{ fav.user.name }}</a></p>
 						</div>
 						<div class="right smallpadding">
 						<form action="/quotes/{{ fav.id }}/unfav" method="get">
